@@ -38,6 +38,13 @@ class Mover {
   void display() {
     noStroke();
     fill(100);
-    ellipse(location.x, location.y, 20, 20);
+    float theta = volocity.heading2D();
+    pushMatrix();
+    translate(location.x, location.y);
+    rotate(theta);
+    rectMode(CENTER);
+    rect(0, 0, 25, 10);
+    triangle(20.5, 0, 12, -5, 12, 5);
+    popMatrix();
   }
 }
