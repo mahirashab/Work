@@ -3,40 +3,40 @@ class Rain {
   float rY;
   float rSpeed;
   float rAcceleration;
-  int rDia;
+  int r;
 
-  Rain() {
+  Rain(float acc) {
     rX = random(10, width - 10);
     rY = 0;
     rSpeed = 1;
-    rAcceleration = 0.01;
-    rDia = 4;
+    rAcceleration = acc;
+    r = 5;
   }
 
-  void rDraw() {
-
+  void display() {
     noStroke();
     fill(100, 100, 50);
-    ellipse(rX, rY, rDia, rDia);
+    ellipse(rX, rY, r, r);
   }
 
-  void rUpdate() {
+  void update() {
     rY += rSpeed; 
     rSpeed += rAcceleration;
-    //if (hand.cY < (rY + 2.5)) {
-    //  rX = random(10, width - 10);
-    //  rY = 0;
-    //  rSpeed = 1;
-    //}
   }
 
-  //boolean touched() {
-  //  if (rY > height || hand.cY < (rY + 2.5)) {
-  //    return true; 
-  //  }else (){
+  boolean touched(Catcher c) {
+    if (c.cY < rY && rX >= c.cX - c.cWidth/2 && rX <= c.cX + c.cWidth/2) {
+      return true;  
+    } else {
+      return false;
+    }
+  }
 
-  //  }
-  //  //return true;
-
-  //}
+  boolean ground() {
+    if (rY > height) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

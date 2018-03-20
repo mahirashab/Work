@@ -8,13 +8,15 @@ class Catcher {
   Catcher() {
     cX = width/2;
     cY = height - 20;
-    cWidth = 35;
+    cWidth = 45;
     cHeight = 5;
   }
 
   void cDraw(float x) {
     fill(100);
     noStroke();
-    rect(x, cY, cWidth, cHeight);
+    rectMode(CENTER);
+    cX = x;
+    rect(cX, cY, cWidth, cHeight);
   }
 }
