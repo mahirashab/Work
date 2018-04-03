@@ -28,8 +28,10 @@ void draw() {
 }
 
 void keyPressed() {
-  if(key == 'r') {
-   car.remove(0); 
+  if (key == 'r') {
+    if (car.size() > 0) {
+      car.remove(0);
+    }
   }
 }
 

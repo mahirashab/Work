@@ -6,6 +6,7 @@ class FlowField {
   int cols, rows;
   int resolution;
   float zoff;
+  float xM, yM;
 
 
   FlowField(int f) {
@@ -38,17 +39,23 @@ class FlowField {
   }
 
   void update() {
+    xM = map(mouseX, 0, width, 0, 3);
     float xoff = 0;
+    xoff += xM;
     for (int i = 0; i < cols; i++) {
+      yM = map(mouseY, 0, height, 0, 3);
       float yoff = 0;
+      yoff += yM;
       for (int j = 0; j < rows; j++) {
         float theta = map(noise(xoff, yoff, zoff), 0, 1, 0, TWO_PI);
         field[i][j] = PVector.fromAngle(theta);
         yoff += 0.1;
+        
+        
       }
       xoff += 0.1;
     }
-    zoff += 0.01;
+    //zoff += 0.01;
   }
 
   PVector lookUp(PVector loc) {

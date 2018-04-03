@@ -86,8 +86,8 @@ class Car {
     PVector normal = null;
     PVector target = null;
     float worldRecord = 10000;
-    
-    
+
+
     for (int i = 0; i < path.points.size() - 1; i++) {
 
       PVector a = path.points.get(i);
@@ -95,8 +95,10 @@ class Car {
 
       PVector normalT = scalarProjection(predictLoc, a, b);
 
-      if (normalT.x < a.x || normalT.x > b.x) {
+      if (normalT.x < min(a.x, b.x) || normalT.x > max(b.x, a.x) || normalT.y < min(a.y, b.y) || normalT.y > max(b.y, a.y)) {
         normalT = b.get();
+        a = path.points.get((i + 1) % path.points.size());
+        b = path.points.get((i + 2)% path.points.size());
       }
 
       float dist = PVector.dist(predictLoc, normalT);
@@ -114,13 +116,13 @@ class Car {
     }
     line(predictLoc.x, predictLoc.y, normal.x, normal.y);
     ellipse(normal.x, normal.y, 4, 4);
-    
+
     if (worldRecord > r) {
       fill(150, 0, 0);
       seek(target);
     }
-    
-     ellipse(target.x, target.y, 8, 8);
+
+    ellipse(target.x, target.y, 8, 8);
   }
 
 
@@ -133,9 +135,9 @@ class Car {
 
     ab.normalize();
     ab.setMag(la.dot(ab));
-    
+
     PVector result = PVector.add(a, ab);
-    
+
     return result;
   }
 
