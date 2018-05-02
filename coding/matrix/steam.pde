@@ -42,7 +42,7 @@ class Steam {
         white = 180;
       }
 
-      if ((count - i) < 10) {
+      if ((count - i) < 20) {
         float blur = map((count-i), 0, 10, 0, 255);
         symbols[i].display(blur, white);
       } else {

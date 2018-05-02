@@ -34,7 +34,7 @@ class FlowField {
       }
       xoff += 4;
     }
-    zoff += 0.3;
+    zoff += 0.03;
   }
 
   void update() {
