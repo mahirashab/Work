@@ -34,17 +34,16 @@ function setup() {
 
     let max = data.users.length * 10;
 
-    for(let i = 0; i < titles.length; i++) {
+    for (let i = 0; i < titles.length; i++) {
         let value = map(score[titles[i]], 0, max, 0, height);
         console.log(value);
         noStroke();
         fill(51);
-        rect((w*i) + 10, (height - value), (w - 10), value);
+        rect((w * i) + 10, (height - value), (w - 10), value);
         fill(255);
-        textSize(25);
-        text(titles[i], (w * i) + 10, 35);
+        textSize(18);
+        text(titles[i], (w * i) + 10, (height - value - 15));
     }
-
 }
 
 
