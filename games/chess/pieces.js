@@ -13,6 +13,8 @@ class Piece {
         this.color = 0
 
         this.neighbours = []
+
+        this.colLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     }
 
     show(color) {
@@ -54,10 +56,17 @@ class Piece {
         }
     }
 
+    calculatePlace() {
+        let colLet = this.colLetter[this.i]
+        let rowNum = 8 - this.j
+
+        return ` ~ ${colLet}${rowNum}`
+    }
+
     getNeighbours(grid) {
         this.neighbours = []
 
-        if (this.kind == 'whitePawn') {
+        if (this.kind == 'White Pawn') {
             let itemInPath = false
             for (let i = 1; i < 2; i++) {
                 if (!itemInPath) {
@@ -75,10 +84,26 @@ class Piece {
 
                 }
             }
+
+            if (this.i < cols - 1 && this.j > -1) {
+                let place = grid[this.i + 1][this.j - 1]
+                if (place.kind != undefined && this.color != place.color) {
+                    console.log(1)
+                    this.neighbours.push(place)
+                }
+            }
+
+            if (this.i > 0 && this.j > -1) {
+                let place = grid[this.i - 1][this.j - 1]
+                if (place.kind != undefined && this.color != place.color) {
+                    console.log(1)
+                    this.neighbours.push(place)
+                }
+            }
         }
 
 
-        if (this.kind == 'blackPawn') {
+        if (this.kind == 'Black Pawn') {
             let itemInPath = false
             for (let i = 1; i < 2; i++) {
                 if (!itemInPath) {
@@ -93,9 +118,24 @@ class Piece {
                     }
                 }
             }
+            if (this.i < cols - 1 && this.j < rows) {
+                let place = grid[this.i + 1][this.j + 1]
+                if (place.kind != undefined && this.color != place.color) {
+                    console.log(1)
+                    this.neighbours.push(place)
+                }
+            }
+
+            if (this.i > 0 && this.j < rows) {
+                let place = grid[this.i - 1][this.j + 1]
+                if (place.kind != undefined && this.color != place.color) {
+                    this.neighbours.push(place)
+                }
+            }
+
         }
 
-        if (this.kind == 'whiteRook' || this.kind == 'blackRook') {
+        if (this.kind == 'White Rook' || this.kind == 'Black Rook') {
             let itemInPathTop = false
             let itemInPathRight = false
             let itemInPathBottom = false
@@ -164,7 +204,7 @@ class Piece {
             }
         }
 
-        if (this.kind == 'whiteBishop' || this.kind == 'blackBishop') {
+        if (this.kind == 'White Bishop' || this.kind == 'Black Bishop') {
             let itemInTopLeft = false
             let itemInTopRight = false
             let itemInBottomLeft = false
@@ -236,7 +276,7 @@ class Piece {
         }
 
 
-        if (this.kind == 'whiteQueen' || this.kind == 'blackQueen') {
+        if (this.kind == 'White Queen' || this.kind == 'Black Queen') {
             let itemInPathTop = false
             let itemInPathRight = false
             let itemInPathBottom = false
@@ -374,7 +414,7 @@ class Piece {
             }
         }
 
-        if (this.kind == 'whiteKing' || this.kind == 'blackKing') {
+        if (this.kind == 'White King' || this.kind == 'Black King') {
             for (let i = -1; i < 2; i++) {
                 for (let j = -1; j < 2; j++) {
 
@@ -394,7 +434,7 @@ class Piece {
             }
         }
 
-        if (this.kind == 'whiteKnight' || this.kind == 'blackKnight') {
+        if (this.kind == 'White Knight' || this.kind == 'Black Knight') {
             let x = this.i
             let y = this.j
 
