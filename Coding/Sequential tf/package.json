@@ -1,0 +1,7 @@
+{
+  "name": "",
+  "version": "",
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1"
+  }
+}
