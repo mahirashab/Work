@@ -1,5 +1,7 @@
 let w, h
 
+// mahir
+
 let cols = 8
 let rows = 8
 
